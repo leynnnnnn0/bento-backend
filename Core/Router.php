@@ -13,6 +13,15 @@ class Router
         ];
     }
 
+    public function post(string $url, $callback)
+    {
+        $this->routes[] = [
+            'url' => $url,
+            'callback' => $callback,
+            'method' => 'POST'
+        ];
+    }
+
     public function resolve()
     {
         $url = Request::url();

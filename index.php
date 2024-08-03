@@ -2,7 +2,8 @@
 header('Content-Type: application/json');
 require_once 'Core/Application.php';
 require_once 'controllers/UserController.php';
-
+require_once 'controllers/PostController.php';
+require_once 'controllers/VoteController.php';
 
 function dd($value)
 {
@@ -23,8 +24,10 @@ $app = new Application($config, __DIR__);
 $app->router->get('/', function(){
    return 'Hello World';
 });
-
 $app->router->get('/users', [UserController::class, 'index']);
+$app->router->get('/posts', [PostController::class, 'index']);
+$app->router->post('/post', [PostController::class, 'store']);
+$app->router->post('/vote', [VoteController::class, 'store']);
 
 
 $app->run();
