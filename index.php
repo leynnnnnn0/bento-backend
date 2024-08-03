@@ -28,6 +28,7 @@ $app->router->get('/users', [UserController::class, 'index']);
 $app->router->get('/posts', [PostController::class, 'index']);
 $app->router->post('/post', [PostController::class, 'store']);
 $app->router->post('/vote', [VoteController::class, 'store']);
+$app->router->post('/users/register', [UserController::class, 'store']);
 
 
 $app->run();
