@@ -24,7 +24,9 @@ class UserController
         {
             return json_encode(['success' => false, 'errors' => $user->errors]);
         }
-        return json_encode(['success' => true]);
+        $query = "INSERT INTO users (username, email, password) values (:username, :email, :password)";
+        $statement = $db->query($query, [':username' => $user->username, ':email' => $user->email, ':password' => password_hash($user->password, PASSWORD_BCRYPT)]);
+        return json_encode(['success' => $statement->rowCount() > 0]);
 
     }
 
